@@ -1,6 +1,6 @@
-# Projeto Fullstack: Integração com APIs (Vue.js + Node.js + MongoDB)
+# Projeto Fullstack: Integração com APIs (Vue.js + Node.js + MySQL)
 
-Este projeto é um sistema fullstack simples para estudo, integrando frontend em Vue.js 3, backend em Node.js/Express e banco de dados MongoDB. Ele demonstra autenticação JWT, CRUD de tarefas, busca de endereço por CEP (ViaCEP) e consulta de clima (OpenWeatherMap).
+Este projeto é um sistema fullstack simples para estudo, integrando frontend em Vue.js 3, backend em Node.js/Express e banco de dados MySQL. Ele demonstra autenticação JWT, CRUD de tarefas, busca de endereço por CEP (ViaCEP) e consulta de clima (OpenWeatherMap).
 
 ## Funcionalidades
 
@@ -14,33 +14,45 @@ Este projeto é um sistema fullstack simples para estudo, integrando frontend em
 ## Tecnologias Utilizadas
 
 - **Frontend:** Vue.js 3, Axios
-- **Backend:** Node.js, Express, Mongoose, JWT, bcryptjs
-- **Banco de Dados:** MongoDB
+- **Backend:** Node.js, Express, JWT, bcryptjs
+- **Banco de Dados:** MySQL
 - **APIs externas:** ViaCEP, OpenWeatherMap
 
 ## Instalação e Execução
 
 ### Pré-requisitos
 - Node.js e npm instalados
-- MongoDB rodando localmente
+- MySQL rodando localmente
 
 ### 1. Clone o repositório
 ```bash
 # Clone este repositório
-https://github.com/seu-usuario/seu-repo.git
+git clone https://github.com/seu-usuario/seu-repo.git
 cd seu-repo
 ```
 
-### 2. Backend
+### 2. Backend (MySQL)
 ```bash
 cd ot-07-back
 npm install
 ```
 Crie um arquivo `.env` em `ot-07-back` com o conteúdo:
 ```
-MONGODB_URI=mongodb://localhost:27017/ot-07
-JWT_SECRET=sua_chave_secreta
+MYSQL_DATABASE=database_name
+MYSQL_USER=root
+MYSQL_PASSWORD=sua_senha
+MYSQL_HOST=seu_host
 PORT=3000
+JWT_SECRET=sua_chave_secreta
+```
+Você pode criar um arquivo `.env.example` para compartilhar o padrão:
+```
+MYSQL_DATABASE=database_name
+MYSQL_USER=root
+MYSQL_PASSWORD=sua_senha
+MYSQL_HOST=seu_host
+PORT=3000
+JWT_SECRET=sua_chave_secreta
 ```
 Inicie o backend:
 ```bash
@@ -52,6 +64,17 @@ Abra outro terminal e execute:
 ```bash
 cd ot-07-front
 npm install
+```
+Crie um arquivo `.env` em `ot-07-front` com o conteúdo:
+```
+VITE_OPENWEATHERMAP_KEY=sua_chave_aqui
+```
+Você pode criar um arquivo `.env.example` para compartilhar o padrão:
+```
+VITE_OPENWEATHERMAP_KEY=sua_chave_aqui
+```
+Inicie o frontend:
+```bash
 npm run dev
 ```
 Acesse o endereço mostrado (geralmente http://localhost:5173)
@@ -59,7 +82,7 @@ Acesse o endereço mostrado (geralmente http://localhost:5173)
 ### 4. OpenWeatherMap
 - Crie uma conta gratuita em https://openweathermap.org/api
 - Pegue sua chave de API
-- No arquivo `ot-07-front/src/components/WeatherInfo.vue`, substitua `const API_KEY = '...'` pela sua chave
+- Coloque a chave no arquivo `.env` do frontend conforme instruído acima
 
 ## Como usar
 - Cadastre-se ou faça login
@@ -71,6 +94,7 @@ Acesse o endereço mostrado (geralmente http://localhost:5173)
 - O backend só aceita requisições autenticadas para tarefas (CRUD)
 - O token JWT é salvo automaticamente após login/registro
 - O projeto é para fins didáticos, sem preocupações avançadas de segurança
+- **Nunca suba arquivos `.env` para o repositório**
 
 ## Licença
 MIT 

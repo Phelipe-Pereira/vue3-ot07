@@ -39,7 +39,7 @@ const weather = ref(null)
 const loading = ref(false)
 const error = ref('')
 
-const API_KEY = 'a323041bdfd63d600cacb8f4b070f41c'
+const API_KEY = import.meta.env.VITE_OPENWEATHERMAP_KEY
 
 const searchWeather = async () => {
   if (!city.value) {
@@ -52,13 +52,10 @@ const searchWeather = async () => {
   weather.value = null
 
   try {
-    const response = await weatherApi.get(
-      `/weather?q=${city.value}&units=${unit.value}&appid=${API_KEY}`,
-    )
+    const response = await weatherApi.get(`/weather?q=${city.value}&units=${unit.value}&appid=${API_KEY}`)
     weather.value = response.data
   } catch (err) {
-    error.value =
-      err.response?.data?.message || 'Erro ao buscar informações do clima. Tente novamente.'
+    error.value = 'Erro ao buscar informações do clima. Tente novamente.'
   } finally {
     loading.value = false
   }
